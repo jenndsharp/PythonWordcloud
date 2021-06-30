@@ -1,0 +1,89 @@
+# Begin by downloading:
+  anaconda prompt (https://www.anaconda.com/products/individual, look for the download button)
+  spyder (https://www.spyder-ide.org/, scroll down and look for the download button) - used as work area after packages are installed
+  pandas (https://pandas.pydata.org/) - performs data analysis
+
+#open anaconda prompt and type the lines that do not begin with #
+
+#install anaconda navigator
+conda install -c anaconda anaconda-navigator
+
+#install numpy - handles multi-dimensional arrays and matrices
+conda install numpy
+
+#install matplotlab - enables other libraries (such as wordcloud) for visualizations
+conda install matplotlib
+
+#install pillow - enables image reading
+conda install -c anaconda pillow
+
+#install wordcloud - places your word cloud in a chosen shape
+conda install -c anaconda git
+git clone https://github.com/amueller/word_cloud.git
+cd word_cloud
+
+#import installed packages through python within anaconda prompt 
+python
+import numpy as np
+import pandas as pd
+from os import path
+from PIL import Image
+from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
+import matplotlib.pyplot as plt
+% matplotlib inline
+c:\intelpython3\lib\site-packages\matplotlib\__init__.py:
+import warnings
+warnings.filterwarnings("ignore")
+
+
+#create data file - save your data file as data.csv or use the name of the file in place of "data.csv"
+
+#open Spyder app - further code is entered in Dpyder
+
+# Load in the dataframe
+df = pd.read_csv("data.csv", index_col=0)
+
+# Looking at first 5 rows of the dataset
+df.head()
+
+#show sample of data
+print("There are {} observations and {} features in this dataset. \n".format(df.shape[0],df.shape[1]))
+
+
+
+
+
+
+________________________________________________________________________________
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
